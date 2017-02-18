@@ -34,27 +34,21 @@ void pageRank(Graph g, double* solution, double damping, double convergence)
 
      Basic page rank pseudocode:
 
+     // initialization: see example code above
+     score_old[vi] = 1/numNodes;
+
      while (!converged) {
-       total_diff = 0
 
-       for all vertices vi {
-         diff[vi] = 0
-         score_new[vi] = 0
+       // compute score_new[vi] for all nodes vi:
+       score_new[vi] = sum over all nodes vj reachable from incoming edges
+                          { score_old[vj] / number of edges leaving vj  }
+       score_new[vi] = (damping * score_new[vi]) + (1.0-damping) / numNodes;
 
-         // accumulate from neighboring nodes
-         for vertices vj connected via outbound edges {
-            score_new[vi] += score_old[vj] / (number of edges leaving vj);
-         }
+       // compute how much per-node scores have changed
+       // quit once algorithm has converged
 
-         // apply damping
-         score_new[vi] = damping * score_new[vi] + (1.0 - damping) / numNodes;
-
-         diff[vi] += abs(score_new[vi] - score_old[vi]);
-         total_diff += diff[vi];
-       }
-
-       // quit when distribution has converged
-       converged = total_diff < convergence;
+       global_diff = sum over all nodes vi { abs(score_new[vi] - score_old[vi]) };
+       converged = (global_diff < convergence)
      }
 
    */
