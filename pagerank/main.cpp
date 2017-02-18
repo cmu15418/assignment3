@@ -218,11 +218,10 @@ int main(int argc, char** argv) {
         char buf[1024];
         char ref_buf[1024];
 
-        sprintf(buf, "%4d:   %.4f (%.4fx)\n",
-                thread_count, pagerank_time, pagerank_base/pagerank_time);
-        sprintf(ref_buf, "%4d:   %.4f (%.4fx)\n",
-                thread_count, ref_pagerank_time,
-                ref_pagerank_base/ref_pagerank_time);
+        sprintf(buf, "%4d:   %.4f\n",
+                thread_count, pagerank_time);
+        sprintf(ref_buf, "%4d:   %.4f\n",
+                thread_count, ref_pagerank_time);
 
         timing << buf;
         ref_timing << ref_buf;
