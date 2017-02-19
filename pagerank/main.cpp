@@ -130,6 +130,12 @@ int main(int argc, char** argv) {
                                PageRankConvergence);
             ref_pagerank_time = CycleTimer::currentSeconds() - start;
 
+
+            if (num_threads[i] == 1) {
+                pagerank_base = pagerank_time;
+                ref_pagerank_base = ref_pagerank_time;
+            }
+
             std::cout << "Testing Correctness of Page Rank\n";
             if (!compareApprox(g, sol4, sol1)) {
               pr_check = false;
