@@ -20,13 +20,14 @@
 void print_help(const char* binary_name) {
     std::cerr << "Usage: " << binary_name << " cmd args\n";
     std::cerr << "Use '" << binary_name << " cmd' to get command-specific help.\n";
-    std::cerr << "Valid cmds:\n"
-              << CMD_TEXT2BIN << "\n"
-              << CMD_INFO << "\n"
-              << CMD_PRINT << "\n"
-              << CMD_NOOUTEDGES << "\n"
-              << CMD_NOINEDGES << "\n"
-              << CMD_EDGESTATS << "\n";
+    std::cerr << "\n";
+    std::cerr << "Valid cmds are:\n\n"
+              << CMD_TEXT2BIN << ": text file to binary file conversion\n"
+              << CMD_INFO << ": print graph metadata\n"
+              << CMD_PRINT << ": print graph topology (careful with big graphs)\n"
+              << CMD_NOOUTEDGES << ": detect vertices with no outgoing edges\n"
+              << CMD_NOINEDGES << ": detect vertices with no incoming edges\n"
+              << CMD_EDGESTATS << ": print stats on graph edges: e.g., min/max edges per node, etc.\n";
 }
 
 int main(int argc, char** argv) {
