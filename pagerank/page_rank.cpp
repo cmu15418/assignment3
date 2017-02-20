@@ -44,6 +44,11 @@ void pageRank(Graph g, double* solution, double damping, double convergence)
                           { score_old[vj] / number of edges leaving vj  }
        score_new[vi] = (damping * score_new[vi]) + (1.0-damping) / numNodes;
 
+       // Add a fraction of the leftover mass from all nodes with no outgoing
+       // edges onto this node
+       score_new[vi] += sum over all nodes vj with no outgoing edges
+                          { damping * score_old[vj] / numNodes }
+
        // compute how much per-node scores have changed
        // quit once algorithm has converged
 
