@@ -141,10 +141,18 @@ void get_meta_data(std::ifstream& file, graph* graph)
     exit(1);
   }
   buffer.clear();
-  std::getline(file, buffer);
+
+  do {
+      std::getline(file, buffer);
+  } while (buffer.size() == 0 || buffer[0] == '#');
+
   graph->num_nodes = atoi(buffer.c_str());
   buffer.clear();
-  std::getline(file, buffer);
+
+  do {
+      std::getline(file, buffer);
+  } while (buffer.size() == 0 || buffer[0] == '#');
+
   graph->num_edges = atoi(buffer.c_str());
 
 }
@@ -157,15 +165,21 @@ void read_graph_file(std::ifstream& file, int* scratch)
   {
     buffer.clear();
     std::getline(file, buffer);
+
+    if (buffer.size() > 0 && buffer[0] == '#')
+        continue;
+
     std::stringstream parse(buffer);
-    int v;
-    parse >> v;
-    if (parse.fail())
-    {
-      break;
+    while (!parse.fail()) {
+        int v;
+        parse >> v;
+        if (parse.fail())
+        {
+            break;
+        }
+        scratch[idx] = v;
+        idx++;
     }
-    scratch[idx] = v;
-    idx++;
   }
 }
 
@@ -189,7 +203,7 @@ void print_graph(const graph* graph)
 
         start_edge = graph->incoming_starts[i];
         end_edge = (i == graph->num_nodes-1) ? graph->num_edges : graph->incoming_starts[i+1];
-        printf("           in=%d: ", end_edge - start_edge);
+        printf("         in=%d: ", end_edge - start_edge);
         for (int j=start_edge; j<end_edge; j++) {
             int target = graph->incoming_edges[j];
             printf("%d ", target);
@@ -216,7 +230,7 @@ Graph load_graph(const char* filename)
 
   build_incoming_edges(graph);
 
-  // print_graph(graph);
+  //print_graph(graph);
 
   return graph;
 }

@@ -40,7 +40,7 @@ Graph load_graph(const char* filename);
 Graph load_graph_binary(const char* filename);
 void store_graph_binary(const char* filename, Graph);
 
-void print_graph(const Graph);
+void print_graph(const graph*);
 
 
 /* Deallocation */
