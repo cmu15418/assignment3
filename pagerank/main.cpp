@@ -16,7 +16,7 @@
 #define USE_BINARY_GRAPH 1
 
 #define PageRankDampening 0.3f
-#define PageRankConvergence 0.01f
+#define PageRankConvergence 1e-7d
 
 void reference_pageRank(Graph g, double* solution, double damping,
                         double convergence);
