@@ -135,7 +135,7 @@ void print_scores(std::vector<std::string> grade_graphs, std::vector<double> sco
         bool small = false;
         if ((graph_name == "grid1000x1000.graph") || (graph_name == "soc-livejournal1_68m.graph")) small = true;
 
-        std::string max_score = (small) ? "2" : "4";
+        std::string max_score = (small) ? "1" : "2";
 
         std::cout<<graph_name;
         for (int i = 0; i < (28 - graph_name.length()); i++) {

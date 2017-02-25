@@ -94,8 +94,7 @@ void run_on_graph(int idx, graph* g, int num_threads, int num_runs,
     double stu_top_down_time = std::numeric_limits<int>::max();
     for (int r = 0; r < num_runs; r++) {
         start = CycleTimer::currentSeconds();
-        //bfs_top_down(g, &stu);
-        reference_bfs_top_down(g, &stu);
+        bfs_top_down(g, &stu);
         time = CycleTimer::currentSeconds() - start;
         stu_top_down_time = std::min(stu_top_down_time, time);
     }
@@ -129,8 +128,7 @@ void run_on_graph(int idx, graph* g, int num_threads, int num_runs,
     double stu_bottom_up_time = std::numeric_limits<int>::max();
     for (int r = 0; r < num_runs; r++) {
         start = CycleTimer::currentSeconds();
-        //bfs_bottom_up(g, &stu);
-        reference_bfs_bottom_up(g, &stu);
+        bfs_bottom_up(g, &stu);
         time = CycleTimer::currentSeconds() - start;
         stu_bottom_up_time = std::min(stu_bottom_up_time, time);
     }
@@ -166,8 +164,7 @@ void run_on_graph(int idx, graph* g, int num_threads, int num_runs,
     double stu_hybrid_time = std::numeric_limits<int>::max();
     for (int r = 0; r < num_runs; r++) {
         start = CycleTimer::currentSeconds();
-        //bfs_hybrid(g, &stu);
-        reference_bfs_hybrid(g, &stu);
+        bfs_hybrid(g, &stu);
         time = CycleTimer::currentSeconds() - start;
         stu_hybrid_time = std::min(stu_hybrid_time, time);
     }
