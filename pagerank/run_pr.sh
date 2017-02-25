@@ -4,4 +4,4 @@
 export OMP_NUM_THREADS=68;
 export KMP_AFFINITY=granularity=fine,compact,1,0;
 
-$PR_GRADER_PATH /export/cmu/asst3_graphs/
+$PR_GRADER_PATH /export/shared/cmu-15418/asst3_graphs/
