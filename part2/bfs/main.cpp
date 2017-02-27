@@ -136,6 +136,17 @@ int main(int argc, char** argv) {
       // Verify correctness
       int mismatch = is_same(ref_depths, sol_depths, graph.vertices_per_process);
 
+      if (world_rank == MASTER) {
+        if (mismatch != graph.vertices_per_process) {
+          failed = true;
+          int mismatch_vertex = (MASTER * graph.vertices_per_process) + mismatch;
+          int mismatch_val = sol_depths[mismatch_vertex];
+          int expected_val = ref_depths[mismatch_vertex];
+          std::cerr << "Mismatch at vertex " << mismatch_vertex << ": Got " << mismatch_val << ", expected " <<
+              expected_val << "\n";
+        }
+      }
+
       MPI_Barrier(MPI_COMM_WORLD);
       if (world_rank == MASTER) {
         for (int j = 1; j < world_size; j++) {

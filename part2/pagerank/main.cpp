@@ -144,10 +144,22 @@ int main(int argc, char** argv) {
 
         int mismatch = compareApprox(ref_scores, sol_scores, graph.vertices_per_process);
 
+        if (world_rank == MASTER) {
+          if (mismatch != graph.vertices_per_process) {
+            failed = true;
+            int mismatch_vertex = (MASTER * graph.vertices_per_process) + mismatch;
+            double mismatch_val = sol_scores[mismatch_vertex];
+            double expected_val = ref_scores[mismatch_vertex];
+            std::cerr << "Mismatch at vertex " << mismatch_vertex << ": Got " << mismatch_val << ", expected " <<
+                expected_val << "\n";
+          }
+        }
+
         MPI_Barrier(MPI_COMM_WORLD);
         if (world_rank == MASTER) {
           for (int j = 1; j < world_size; j++) {
-            int mismatch_j, mismatch_val, expected_val;
+            int mismatch_j;
+            double mismatch_val, expected_val;
             MPI_Status status;
             MPI_Recv(&mismatch_j, 1, MPI_INT, j, 0, MPI_COMM_WORLD, &status);
 
