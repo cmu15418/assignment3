@@ -2,4 +2,4 @@
 # PREV_JOBS=$(qstat -u `whoami` | grep iam-pbs | tail -n +2 | cut -d ' ' -f 1)
 # qdel $PREV_JOBS
 
-qsub -v BFS_PATH=`readlink -f ./pr_dist`,GRAPH_TYPE=$1 -q cmu-15418 /export/shared/cmu-15418/pr_job.sh 
+qsub -v BFS_PATH=`readlink -f ./bfs_dist`,GRAPH_TYPE=$1 -q cmu-15418 /export/shared/cmu-15418/bfs_job.sh 
