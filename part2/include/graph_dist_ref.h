@@ -9,8 +9,8 @@
 #include <cmath>
 #include <iostream>
 
-// 99.5% of the edges for any vertex will be internal edges
-#define CLUSTERING_RATIO 0.995f
+// 75% of the edges for any vertex will be internal edges
+#define CLUSTERING_RATIO 0.75f
 
 using Vertex = int;
 
